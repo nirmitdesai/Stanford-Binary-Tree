@@ -19,7 +19,7 @@ typedef struct BiTree_ {
 } BiTree;
 
 
-void bitree_init(BiTree *tree);
+
 
 
 #endif
