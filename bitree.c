@@ -53,7 +53,7 @@ void postorder(Node *node)
 	
 	
 	postorder(node->left);
-	postrder(node->right);
+	postorder(node->right);
 	printf("%d\n",node->data);
 	
 }
@@ -97,9 +97,6 @@ int lookup(Node *node , int target)
 
 int maxDepth(Node *node)
 {
-	//if(node!=NULL)
-		//printf("value encounbtered = %d\n",node->data);
-	
 	if(node == NULL)
 		return 0;
 	
@@ -114,6 +111,20 @@ int maxDepth(Node *node)
 		return(rDepth+1);
 }
 
+int size(Node *node)
+{
+	if(node == NULL)
+		return;
+
+	int x ,y;
+
+	x = size(node->left);
+	y = size(node->right);
+
+	return x+y+1;
+	
+}
+
 int minValue(Node *node)
 {
 	while(node->left !=NULL)
@@ -123,7 +134,25 @@ int minValue(Node *node)
 }
 
 
+int hasPathSum(Node *node , int sum)
+{
+	if(node==NULL)
+		return;
+	
 
+	int val1, val2;
+	
+	val1=hasPathSum(node->left,sum-node->data);
+	val2=hasPathSum(node->right,sum-node->data);
+
+
+	if(node->left==NULL && node->right==NULL && val1==0 && val2 ==0 && (node->data)==sum )
+		return 1;
+	else
+		return val1 ^ val2;
+	
+
+}
 
 
 
